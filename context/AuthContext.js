@@ -57,8 +57,9 @@ console.log(res);
     if (res.ok) {
       setUser(data);
       router.push('/dashboard/');
-    } else {
       setIsLoading(false);
+    } else {
+      
       setIsError(data.message);
       setIsError(null);
     }
