@@ -21,25 +21,27 @@ export default async (req, res) => {
     })
 
     const resData = await apiRes.json()
+    console.log(resData.status);
 
-    //console.log(resData);
-
-    if(apiRes.ok ) {
+    if(apiRes.ok && resData.status === 200 ) {
+      //console.log(resData.status);
+      //console.log(apiRes.data.status);
       //Set Cookie
       res.setHeader(
         'Set-Cookie',
         cookie.serialize('token', String(resData.data.token), {
           httpOnly: true,
           secure: process.env.NODE_ENV !== 'development',
-          maxAge: 60 * 60 * 24 * 7, // 1 week
+          //maxAge: 60 * 60 * 24, // 1 day
           sameSite: 'strict',
           path: '/'
         })
       )
-
-      res.status(200).json({user: resData.user})
+//console.log(resData.user);
+      res.status(200).json({user: true})
+      //console.log(res)
     } else {
-      res.status(data.statusCode).json({message: resData.message})
+      res.status(resData.status).json({message: resData.message})
     }
 
   } else {
