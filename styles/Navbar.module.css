@@ -9,7 +9,7 @@
 
 .nav div a{
   margin-left: 1.5rem;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   color: #333;
 }
 

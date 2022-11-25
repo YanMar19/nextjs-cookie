@@ -8,26 +8,26 @@ export default function Navbar() {
 
   return (
     <nav className={style.nav}>
-      <Link href="/"><h2><a>JWT-Auth-Nextjs</a></h2></Link>
+      <Link href="/"><h2><a>Sylor Wooden Solutions</a></h2></Link>
 
       <div>
-        {/* <Link href="/">
-          <a>Sign in</a>
-        </Link> */}
         {user ? <>
           <Link href="/initialization">
-          <a>Αρχικοποίηση</a>
-        </Link>
-        <Link href="/products">
-          <a>Products</a>
-        </Link>
-        {/* <Link href="/signup">
-          <a>Sign up</a>
-        </Link> */}
-        <div>
-          <a onClick={() => logout()}>Logout</a>
-        </div>
-        </> : null}
+            <a>Αρχικοποίηση</a>
+          </Link>
+          <Link href="/products">
+            <a>Προϊόντα</a>
+          </Link>
+          {/* <Link href="/signup">
+            <a>Sign up</a>
+          </Link> */}
+          <div>
+            <a onClick={() => logout()}>Έξοδος</a>
+          </div>
+        </> :         
+          <Link href="/login">
+            <a>Sign in</a>
+          </Link>}
       </div>
         
     </nav>

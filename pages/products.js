@@ -1,13 +1,37 @@
-export default Products;
+import { parseCookies } from '/helpers/index';
 
-function Products() {
 
-    return (
-        <div className="card mt-4">
-            <h4 className="card-header">This is my test page!</h4>
-            <div className="card-body">
-                <h6>My page from secure api end point</h6>
-            </div>
-        </div>
-    );
+export default function Page({ token }) {
+
+  //  We now have access to the token
+  console.log(token)
+
+  return (
+    <main className="dashboard">
+      <h1>All Products</h1>  
+    </main>
+  )
+}
+
+
+export async function getServerSideProps({ req }) {
+
+  const { token } = parseCookies(req);
+
+  // Redirecting the user if the token is not found
+  if (!token) {
+    return {
+      redirect: {
+        destination: '/login',
+        permanent: false,
+      },
+    };
+  }
+
+
+  return {
+    props: {
+      token
+    },
+  };
 }
