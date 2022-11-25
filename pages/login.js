@@ -81,7 +81,7 @@ export default function LoginPage() {
               )}
             </Formik>
           </div>
-          <p className={style.footer}>Designed by <span>Calebbenjin.io</span></p>
+          <p className={style.footer}>Designed by <span>Webproposal.eu</span></p>
         </div>
       </section>
     </>
