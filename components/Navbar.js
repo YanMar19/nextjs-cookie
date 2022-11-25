@@ -11,19 +11,19 @@ export default function Navbar() {
       <Link href="/"><h2><a>JWT-Auth-Nextjs</a></h2></Link>
 
       <div>
-        <Link href="/">
+        {/* <Link href="/">
           <a>Sign in</a>
-        </Link>
-        <Link href="/signup">
-          <a>Sign up</a>
-        </Link>
+        </Link> */}
         {user ? <>
-          <Link href="/dashboard">
-          <a>Dashboard</a>
+          <Link href="/initialization">
+          <a>Αρχικοποίηση</a>
         </Link>
-        <Link href="/mypage">
-          <a>MyPage</a>
+        <Link href="/products">
+          <a>Products</a>
         </Link>
+        {/* <Link href="/signup">
+          <a>Sign up</a>
+        </Link> */}
         <div>
           <a onClick={() => logout()}>Logout</a>
         </div>

@@ -1,6 +1,6 @@
-export default MyPage;
+export default Products;
 
-function MyPage() {
+function Products() {
 
     return (
         <div className="card mt-4">

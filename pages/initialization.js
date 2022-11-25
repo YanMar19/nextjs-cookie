@@ -8,7 +8,7 @@ export default function Page({ token }) {
 
   return (
     <main className="dashboard">
-      <h1>User Dashboard</h1>  
+      <h1>Product initialization</h1>  
     </main>
   )
 }

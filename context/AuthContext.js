@@ -6,7 +6,7 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [isError, setIsError] = useState(null);
+  const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
   const [initialLoading, setInitialLoading] = useState(false);
 
@@ -31,11 +31,11 @@ export const AuthProvider = ({ children }) => {
 
     if (res.ok) {
       setUser(resData.user)
-      router.push('/dashboard');
+      router.push('/initialization');
     }else {
       setIsLoading(false);
-      setIsError(resData.message);
-      setIsError(null);
+      setError(resData.message);
+      setError(null);
     }
   }
 
@@ -53,16 +53,17 @@ export const AuthProvider = ({ children }) => {
     });
 console.log(res);
     const data = await res.json();
-
-    if (res.ok) {
+console.log(data.message);
+    if (res.ok && res.status == 200) {
       setUser(data);
-      router.push('/dashboard/');
-      setIsLoading(false);
+      router.push('/initialization/');
+
     } else {
       
-      setIsError(data.message);
-      setIsError(null);
+      setError(data.message);
+      setError(null);
     }
+    setIsLoading(false);
   };
 
   // Check if user is logged in
@@ -96,7 +97,7 @@ console.log(res);
   };
 
   return (
-    <AuthContext.Provider value={{ register, user, isError, isLoading, login, logout }}>
+    <AuthContext.Provider value={{ register, user, error, isLoading, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
