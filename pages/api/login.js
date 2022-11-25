@@ -2,12 +2,12 @@ import { API_URL} from '../../config/index';
 import cookie from 'cookie';
 
 export default async (req, res) => {
-
+  console.log(0)
   // checking if is a post request
   if(req.method === 'POST') {
-    // destructure email, and password
-    const { email, password } = req.body
-
+    // destructure username, and password
+    const { username, password } = req.body
+    console.log(1);
     // Making a post request to hit our backend api-endpoint
     const apiRes = await fetch(`${API_URL}/login`, {
       method: 'POST',
@@ -15,15 +15,15 @@ export default async (req, res) => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        email,
+        username,
         password
       })
     })
 
     const resData = await apiRes.json()
-    console.log(resData.status);
+    console.log(resData.statusCode);
 
-    if(apiRes.ok && resData.status === 200 ) {
+    if(apiRes.ok && resData.statusCode === 200 ) {
       //console.log(resData.status);
       //console.log(apiRes.data.status);
       //Set Cookie
@@ -37,11 +37,11 @@ export default async (req, res) => {
           path: '/'
         })
       )
-//console.log(resData.user);
+      //console.log(resData.user);
       res.status(200).json({user: true})
       //console.log(res)
     } else {
-      res.status(resData.status).json({message: resData.message})
+      res.status(resData.statusCode).json({message: resData.message})
     }
 
   } else {

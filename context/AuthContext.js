@@ -12,19 +12,19 @@ export const AuthProvider = ({ children }) => {
 
   const router = useRouter();
 
-  useEffect(() => checkUserLoggedIn(), []);
+  // useEffect(() => checkUserLoggedIn(), []);
   
   //Register user
   //=======================================
-  const register = async ({ fullname, email, password }) => {
+  const register = async ({ fullname, username, password }) => {
     setIsLoading(true);
-    console.log(fullname, email, password);
+    console.log(fullname, username, password);
     const res = await fetch(`${NEXT_URL}/api/register`, {
       methode: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({fullname, email, password}),
+      body: JSON.stringify({fullname, username, password}),
     });
 
     const resData = await res.json();
@@ -41,15 +41,15 @@ export const AuthProvider = ({ children }) => {
 
   // Login user
   // =====================================
-  const login = async ({ email, password }) => {
+  const login = async ({ username, password }) => {
     setIsLoading(true);
-    console.log(email, password);
+    console.log(username, password);
     const res = await fetch(`${NEXT_URL}/api/login`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ email, password}),
+      body: JSON.stringify({ username, password}),
     });
 console.log(res);
     const data = await res.json();

@@ -11,7 +11,7 @@ import Link from 'next/link'
 import AuthContext from '../context/AuthContext'
 
 const LoginSchema = Yup.object().shape({
-  email: Yup.string().required('Email is required'),
+  username: Yup.string().required('username is required'),
   password: Yup.string().required('Password is required'),
 })
 
@@ -19,8 +19,8 @@ export default function LoginPage() {
   console.log(0);
   const { login, error, user, isLoading } = useContext(AuthContext)
 
-  const handleLoginSubmit = async ({ email, password }) => {
-    login({email, password})
+  const handleLoginSubmit = async ({ username, password }) => {
+    login({username, password})
   }
 
   return (
@@ -40,7 +40,7 @@ export default function LoginPage() {
 
             <Formik
               initialValues={{
-                email: '',
+                username: '',
                 password: '',
               }}
               onSubmit={(values) => handleLoginSubmit(values)}
@@ -52,12 +52,12 @@ export default function LoginPage() {
                   {error && <FormError text={error} />}
                   <div>
                     <div className={style.formControl}>
-                      <Label text='Email' />
+                      <Label text='username' />
                       <FormInput
-                        ariaLabel='Email'
-                        name='email'
-                        type='email'
-                        placeholder='Email'
+                        ariaLabel='username'
+                        name='username'
+                        type='username'
+                        placeholder='username'
                       />
                     </div>
                     <div className={style.formControl}>
