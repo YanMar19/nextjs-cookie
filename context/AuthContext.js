@@ -8,11 +8,11 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
-  const [initialLoading, setInitialLoading] = useState(false);
+  // const [initialLoading, setInitialLoading] = useState(false);
 
   const router = useRouter();
 
-  // useEffect(() => checkUserLoggedIn(), []);
+  // useEffect(() => getAllUsers(), []);
   
   //Register user
   //=======================================
@@ -43,7 +43,7 @@ export const AuthProvider = ({ children }) => {
   // =====================================
   const login = async ({ username, password }) => {
     setIsLoading(true);
-    console.log(username, password);
+
     const res = await fetch(`${NEXT_URL}/api/login`, {
       method: 'POST',
       headers: {
@@ -51,36 +51,57 @@ export const AuthProvider = ({ children }) => {
       },
       body: JSON.stringify({ username, password}),
     });
-console.log(res);
+
     const data = await res.json();
-console.log(data.message);
-    if (res.ok && res.status == 200) {
+// console.log(res.status);
+    if (res.ok) {
       setUser(data);
-      router.push('/initialization/');
+      router.push('/');
 
     } else {
-      
+// console.log(data.message);      
       setError(data.message);
-      setError(null);
+      // setError(null);
     }
     setIsLoading(false);
   };
+  
+  //Display all users
+//===================================================
+const getAllUsers = async () => {
+  setIsLoading(true);
+
+  const res = await fetch(`${NEXT_URL}/api/users`);
+  const data = await res.json();
+// console.log(data);
+  if (res.ok) {
+    setUser(data);
+  }else {
+    setError(data.message);
+    setUser(null);
+  }
+
+  setIsLoading(false);
+}
 
   // Check if user is logged in
   // ================================================
-  const checkUserLoggedIn = async () => {
-    console.log('User is checked');
-    setInitialLoading(true);
+  // const checkUserLoggedIn = async () => {
+  //   // console.log('User is checked');
+  //   setIsLoading(true);
 
-    const res = await fetch('/api/user');
-    const data = await res.json();
+  //   const res = await fetch(`${NEXT_URL}/api/user`);
+  //   const data = await res.json();
 
-    if(res.ok) {
-      setUser(data.user.data.user);
-    } else {
-      setUser(null);
-    }
-  };
+  //   if(res.ok) {
+  //     setUser(data.username);
+  //     console.log(data);
+  //     console.log('User is checked');
+  //   } else {
+  //     setUser(null);
+  //   }
+  //   setIsLoading(false);
+  // };
 
   // Logout user
   // =====================================
@@ -97,7 +118,7 @@ console.log(data.message);
   };
 
   return (
-    <AuthContext.Provider value={{ register, user, error, isLoading, login, logout }}>
+    <AuthContext.Provider value={{ register, user, error, isLoading, login, getAllUsers, logout }}>
       {children}
     </AuthContext.Provider>
   );

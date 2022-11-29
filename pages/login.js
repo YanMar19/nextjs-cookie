@@ -16,7 +16,7 @@ const LoginSchema = Yup.object().shape({
 })
 
 export default function LoginPage() {
-  console.log(0);
+
   const { login, error, user, isLoading } = useContext(AuthContext)
 
   const handleLoginSubmit = async ({ username, password }) => {

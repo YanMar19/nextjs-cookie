@@ -1,10 +1,10 @@
 import { parseCookies } from '/helpers/index';
 
 
-export default function Page({ token }) {
+export default function Page({ x_access_token }) {
 
-  //  We now have access to the token
-  console.log(token)
+  //  We now have access to the x_access_token
+  console.log(x_access_token)
 
   return (
     <main className="dashboard">
@@ -16,10 +16,10 @@ export default function Page({ token }) {
 
 export async function getServerSideProps({ req }) {
 
-  const { token } = parseCookies(req);
+  const { x_access_token } = parseCookies(req);
 
-  // Redirecting the user if the token is not found
-  if (!token) {
+  // Redirecting the user if the x_access_token is not found
+  if (!x_access_token) {
     return {
       redirect: {
         destination: '/login',
@@ -31,7 +31,7 @@ export async function getServerSideProps({ req }) {
 
   return {
     props: {
-      token
+     x_access_token
     },
   };
 }

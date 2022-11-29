@@ -5,7 +5,7 @@ export default async (req, res) => {
     // DESTROY COOKIE
     res.setHeader(
       'Set-Cookie',
-      cookie.serialize('token', '', {
+      cookie.serialize('x_access_token', '', {
         httpOnly: true,
         secure: process.env.NODE_ENV !== 'development',
         expires: new Date(0),
