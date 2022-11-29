@@ -32,7 +32,7 @@ export default function SignUpPage() {
               <h3 className={style.title}>Sign up your account</h3>
               <p className={style.subtitle}>
                 Already have an account?{' '}
-                <Link href='/'>
+                <Link href='/login'>
                   <a>Sign In</a>
                 </Link>
               </p>

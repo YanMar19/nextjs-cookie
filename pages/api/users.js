@@ -8,17 +8,17 @@ const user = async (req, res) => {
       return
     }
 
-    const { token } = cookie.parse(req.headers.cookie)
-
-    const apiRes = await fetch(`${API_URL}/user`, {
+    const {x_access_token } = cookie.parse(req.headers.cookie)
+// console.log(x_access_token);
+    const apiRes = await fetch(`${API_URL}/users`, {
       method: 'GET',
       headers: {
-        Authorization: `Bearer ${token}`
+        'x_access_token': x_access_token
       }
     })
-
+// console.log(apiRes.headers);
     const user = await apiRes.json()
-
+// console.log(user.data);
     if(apiRes.ok) {
       res.status(200).json({user})
     } else {

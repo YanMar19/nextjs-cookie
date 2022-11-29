@@ -26,7 +26,7 @@ const register = async (req, res) => {
       // Set Cookie
       res.setHeader(
         'Set-Cookie',
-        cookie.serialize('token', String(resData.data.token), {
+        cookie.serialize('x-access-token', String(resData.data.token), {
           httpOnly: true,
           secure: process.env.NODE_ENV !== 'development',
           maxAge: 60 * 60 * 24 * 7, // 1 week

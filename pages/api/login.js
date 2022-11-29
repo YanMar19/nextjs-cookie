@@ -2,12 +2,12 @@ import { API_URL} from '../../config/index';
 import cookie from 'cookie';
 
 export default async (req, res) => {
-  console.log(0)
+
   // checking if is a post request
   if(req.method === 'POST') {
     // destructure username, and password
     const { username, password } = req.body
-    console.log(1);
+
     // Making a post request to hit our backend api-endpoint
     const apiRes = await fetch(`${API_URL}/login`, {
       method: 'POST',
@@ -21,15 +21,14 @@ export default async (req, res) => {
     })
 
     const resData = await apiRes.json()
-    console.log(resData.statusCode);
+console.log(resData.data.username);
 
     if(apiRes.ok && resData.statusCode === 200 ) {
-      //console.log(resData.status);
-      //console.log(apiRes.data.status);
+
       //Set Cookie
       res.setHeader(
         'Set-Cookie',
-        cookie.serialize('token', String(resData.data.token), {
+        cookie.serialize('x_access_token', String(resData.data.token), {
           httpOnly: true,
           secure: process.env.NODE_ENV !== 'development',
           //maxAge: 60 * 60 * 24, // 1 day

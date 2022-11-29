@@ -12,6 +12,9 @@ export default function Navbar() {
 
       <div>
         {user ? <>
+        <Link href="/users">
+          <a>Χρήστες</a>
+        </Link>
           <Link href="/initialization">
             <a>Αρχικοποίηση</a>
           </Link>
@@ -21,12 +24,12 @@ export default function Navbar() {
           {/* <Link href="/signup">
             <a>Sign up</a>
           </Link> */}
-          <div>
+          <>
             <a onClick={() => logout()}>Έξοδος</a>
-          </div>
+          </>
         </> :         
           <Link href="/login">
-            <a>Sign in</a>
+            <a>Είσοδος</a>
           </Link>}
       </div>
         

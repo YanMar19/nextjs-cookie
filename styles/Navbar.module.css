@@ -5,16 +5,18 @@
   align-items: center;
   box-shadow: 1px -1px 14px rgba(0,0,0,0.1);
   justify-content: space-between;
+  cursor: pointer;
 }
 
 .nav div a{
   margin-left: 1.5rem;
   /* text-transform: uppercase; */
-  color: #333;
+  color: rgb(68, 25, 36);
 }
 
 .nav h2 {
   font-size: 1.3rem;
   font-weight: 900;
   color: #333;
+  
 }
